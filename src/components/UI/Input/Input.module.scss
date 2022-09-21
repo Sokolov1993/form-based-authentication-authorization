@@ -1,0 +1,57 @@
+@import '../../../styles/mixins.scss';
+
+.groupOfFields__input {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  input {
+    @include input();
+  }
+}
+
+.forgotPassword__checkbox {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  align-items: center;
+
+  input {
+    width: 15px;
+    height: 15px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  label {
+    padding-left: 10px;
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 18px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.startInputLogo {
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 13px;
+  }
+}
+
+.endInputLogo {
+  position: relative;
+
+  img {
+    position: absolute;
+    bottom: 13px;
+    right: 0;
+    cursor: pointer;
+  }
+}

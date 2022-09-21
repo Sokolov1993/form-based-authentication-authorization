@@ -1,0 +1,36 @@
+@import './variables.scss';
+
+@mixin input {
+  display: inline-flex;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 2px solid white;
+  background-color: $background-form-color;
+  padding-left: 2rem;
+  font-size: 16px;
+  line-height: 24px;
+
+  &::placeholder {
+    color: white;
+  }
+
+  &:focus {
+    outline: none;
+    outline-offset: none;
+  }
+}
+
+@mixin button {
+  background-color: $primary-color;
+  border: none;
+  border-radius: 30px;
+  max-width: 430px;
+  width: 100%;
+  min-height: 50px;
+
+  &:hover {
+    background-color: $secondary-color;
+    cursor: pointer;
+  }
+}

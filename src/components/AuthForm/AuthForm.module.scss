@@ -1,0 +1,79 @@
+@import '../../styles/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  color: white;
+}
+
+.form {
+  background-color: $background-form-color;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  gap: 13rem;
+  align-items: center;
+  padding-right: 1rem;
+}
+
+.form__image {
+  height: 100%;
+  width: 50%;
+  display: flex;
+
+  img {
+    width: 100%;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+    object-fit: cover;
+    filter: brightness(80%);
+  }
+}
+
+.form__inputs {
+  display: flex;
+  flex-direction: column;
+  min-height: 430px;
+  max-width: 635px;
+  width: 50%;
+
+  h2 {
+    padding-bottom: 20px;
+  }
+
+  .inputs__registerHere {
+    padding-bottom: 50px;
+  }
+}
+
+.inputs__groupOfFields {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.inputs__forgotPassword {
+  display: inline-flex;
+  justify-content: space-between;
+  padding-bottom: 60px;
+}
+
+.form__button {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.form__logo {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  padding-top: 95px;
+  gap: 24px;
+
+  img {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+  }
+}
