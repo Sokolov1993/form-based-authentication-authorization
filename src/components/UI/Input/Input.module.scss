@@ -5,7 +5,7 @@
   flex-direction: column;
   gap: 11px;
 
-  input {
+  .input {
     @include input();
   }
 }
@@ -54,4 +54,8 @@
     right: 0;
     cursor: pointer;
   }
+}
+
+.input.--invalidInput {
+  border-color: red;
 }

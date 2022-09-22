@@ -1,0 +1,13 @@
+@import '../../../styles/mixins.scss';
+
+.button {
+  @include button();
+}
+
+.secondaryButton {
+  @include secondaryButton();
+}
+
+.button.--disabled {
+  background-color: gray;
+}

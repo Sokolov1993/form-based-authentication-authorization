@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 
-import AuthForm from './components/AuthForms/AuthForm';
+import Auth from './components/Auth/Auth';
 
 function App() {
   return (
     <Fragment>
-      <AuthForm />
+      <Auth />
     </Fragment>
   );
 }
