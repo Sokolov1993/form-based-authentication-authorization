@@ -1,4 +1,5 @@
 @import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
 
 .groupOfFields__input {
   display: flex;
@@ -58,4 +59,8 @@
 
 .input.--invalidInput {
   border-color: red;
+}
+
+.input.--validInput {
+  border-color: $primary-color;
 }

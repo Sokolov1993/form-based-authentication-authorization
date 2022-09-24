@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 @import './styles/variables.scss';
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: white;
 }
 
 a {
@@ -27,9 +30,9 @@ select:-webkit-autofill:focus {
   border-top: none;
   border-left: none;
   border-right: none;
-  border-bottom: 2px solid white;
-  background-color: $background-form-color;
+  border-bottom: 2px solid $primary-color;
+  background-color: transparent;
   -webkit-text-fill-color: white;
-  -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
 }

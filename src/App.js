@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 
-import Auth from './components/Auth/Auth';
+import MainRouts from './router/MainRouts';
 
 function App() {
   return (
     <Fragment>
-      <Auth />
+      <MainRouts />
     </Fragment>
   );
 }

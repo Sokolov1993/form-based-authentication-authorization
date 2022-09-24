@@ -1,14 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment, useRef } from 'react';
 
 import AuthForm from '../UI/AuthForm/AuthForm';
-import { emailValidationRegExp } from '../../constants/emailRegExpValidation';
-import { signUpRequest } from '../../store/authSlice/signUp/signUpRequest';
-import { useDispatch } from 'react-redux';
+import Modal from '../UI/Modal/Modal';
+import Spinner from '../UI/Spinner/Spinner';
 
-import classes from './Auth.module.scss';
+import { emailValidationRegExp } from '../../constants/emailRegExpValidation';
+import { authActions } from '../../constants/requestHelpers';
+import { instance } from '../../store/authSlice/instance';
+import { signInWithGoogleAcc } from '../../store/authSlice/authSlice';
+
+import { authRequest } from '../../store/authSlice/authRequest';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
+import { signInWithGoogle } from '../services/firebase';
+import firebase from 'firebase/compat/app';
 
 const Auth = () => {
   const dispatch = useDispatch();
+  const { token, pending } = useSelector((state) => state.authSlice);
+  const navigate = useNavigate();
+  const resetPasswordEmail = useRef();
 
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(true);
@@ -18,11 +30,29 @@ const Auth = () => {
   const [isPasswordValid, setIsPasswordValid] = useState(true);
   const [isPasswordTouched, setIsPasswordTouched] = useState(false);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [forgotPassword, setForgotPassword] = useState(false);
 
   const [isSignInFormShow, setIsSignInFormShow] = useState(true);
   const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
+    if (token) {
+      navigate('/home');
+    }
+  }, [token]);
+
+  useEffect(() => {
+    if (!token) {
+      firebase.auth().onAuthStateChanged((user) => {
+        const token = user?._delegate?.accessToken;
+        dispatch(signInWithGoogleAcc(token));
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isPasswordTouched && !isEmailTouched) return;
+
     const isValidEmail = !!email.match(emailValidationRegExp);
     const isValidPassword = password.length > 5;
 
@@ -46,10 +76,8 @@ const Auth = () => {
   }, [
     email,
     isEmailTouched,
-
     password,
     isPasswordTouched,
-
     isEmailValid,
     isPasswordValid,
   ]);
@@ -78,33 +106,81 @@ const Auth = () => {
     setIsPasswordShown((prevState) => !prevState);
   };
 
+  const onResetPasswordClickHandler = () => {
+    const url = authActions.passwordReset;
+
+    instance.post(url, {
+      requestType: 'PASSWORD_RESET',
+      email: resetPasswordEmail.current.value,
+      url: authActions.passwordReset,
+    });
+
+    setForgotPassword(false);
+  };
+
+  const onShowModalClickHandler = () => {
+    setForgotPassword(true);
+  };
+
+  const onCloseModalClickHandker = () => {
+    setForgotPassword(false);
+  };
+
   const onAuthFormSubmitHandler = (event) => {
     event.preventDefault();
 
-    dispatch(signUpRequest({ email, password }));
+    if (!isSignInFormShow) {
+      dispatch(authRequest({ email, password, url: authActions.signUp }));
+    } else {
+      dispatch(authRequest({ email, password, url: authActions.signIn }));
+    }
+
+    setEmail('');
+    setPassword('');
   };
 
   const onClickRegistrationButton = () => {
     setIsSignInFormShow((prevState) => !prevState);
+    setEmail('');
+    setPassword('');
+    setIsEmailValid(true);
+    setIsPasswordValid(true);
+    setIsEmailTouched(false);
+    setIsPasswordTouched(false);
   };
 
+  if (pending) {
+    return <Spinner />;
+  }
+
   return (
-    <AuthForm
-      onFormSubmitHandler={onAuthFormSubmitHandler}
-      onPasswordChangeHandler={onPasswordChangeHandler}
-      onPasswordBlurHandler={onPasswordBlurHandler}
-      onEmailChangeHandler={onEmailChangeHandler}
-      onEmailBlurHandler={onEmailBlurHandler}
-      email={email}
-      isEmailValid={isEmailValid}
-      password={password}
-      isPasswordValid={isPasswordValid}
-      isPasswordShown={isPasswordShown}
-      isSignInFormShow={isSignInFormShow}
-      onPasswordShowHandler={onPasswordShowHandler}
-      isFormValid={isFormValid}
-      onClickRegistrationButton={onClickRegistrationButton}
-    />
+    <Fragment>
+      {forgotPassword && (
+        <Modal
+          onClickCancelButton={onCloseModalClickHandker}
+          onClickOkButton={onResetPasswordClickHandler}
+          inputRef={resetPasswordEmail}
+        />
+      )}
+      <AuthForm
+        onFormSubmitHandler={onAuthFormSubmitHandler}
+        onPasswordChangeHandler={onPasswordChangeHandler}
+        onForgotPasswordClickHandler={onShowModalClickHandler}
+        onPasswordBlurHandler={onPasswordBlurHandler}
+        onEmailChangeHandler={onEmailChangeHandler}
+        onEmailBlurHandler={onEmailBlurHandler}
+        email={email}
+        isEmailValid={isEmailValid}
+        password={password}
+        isPasswordValid={isPasswordValid}
+        isPasswordShown={isPasswordShown}
+        isSignInFormShow={isSignInFormShow}
+        onPasswordShowHandler={onPasswordShowHandler}
+        isFormValid={isFormValid}
+        onClickRegistrationButton={onClickRegistrationButton}
+        signInWithGoogle={signInWithGoogle}
+      />
+    </Fragment>
   );
 };
 

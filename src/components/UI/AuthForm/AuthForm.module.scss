@@ -1,10 +1,4 @@
 @import '../../../styles/variables.scss';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-
-* {
-  font-family: 'Poppins', sans-serif;
-  color: white;
-}
 
 .form {
   background-color: $background-form-color;
@@ -14,12 +8,18 @@
   gap: 13rem;
   align-items: center;
   padding-right: 1rem;
+  transition: gap ease-in-out 1.5s;
+
+  @media screen and (max-width: 1200px) {
+    gap: 5rem;
+  }
 }
 
 .form__image {
   height: 100%;
   width: 50%;
   display: flex;
+  transition: width ease-in 1.5s;
 
   img {
     width: 100%;
@@ -27,6 +27,18 @@
     border-bottom-right-radius: 40px;
     object-fit: cover;
     filter: brightness(80%);
+    transition: filter ease-in 1.5s, border-radius ease-in 1.5s;
+
+    @media screen and (max-width: 991px) {
+      filter: brightness(20%);
+      border-radius: 0;
+    }
+  }
+
+  @media screen and (max-width: 991px) {
+    position: absolute;
+    width: 100%;
+    z-index: 0;
   }
 }
 
@@ -36,6 +48,7 @@
   min-height: 430px;
   max-width: 635px;
   width: 50%;
+  transition: transform ease-in 1.5s, right ease-in 1.5s, width ease-in 3s;
 
   h2 {
     padding-bottom: 20px;
@@ -43,6 +56,15 @@
 
   .inputs__registerHere {
     padding-bottom: 50px;
+  }
+
+  @media screen and (max-width: 991px) {
+    padding: 0.5rem;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
   }
 }
 

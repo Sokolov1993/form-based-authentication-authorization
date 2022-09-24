@@ -1,4 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+
+import { notification } from '../../../constants/authInputNotification';
 
 import classes from './Input.module.scss';
 
@@ -6,7 +8,7 @@ const Input = ({
   htmlFor,
   label,
   type,
-  className,
+  className = 'groupOfFields__input',
   placeholder,
   value,
   onChange,
@@ -16,13 +18,21 @@ const Input = ({
   startInputLogo,
   onPasswordShowHandler,
   isInputValid,
+  inputRef,
   ...args
 }) => {
-  const inputClassName = !isInputValid ? classes['--invalidInput'] : '';
+  const inputClassName = !isInputValid
+    ? classes['--invalidInput']
+    : classes['--validInput'];
+
+  const notificationMessage = !isInputValid && notification[type];
 
   return (
     <div className={classes[className]}>
-      <label htmlFor={htmlFor}>{label}</label>
+      <label htmlFor={htmlFor}>
+        {label}
+        <span style={{ color: 'grey' }}>{notificationMessage}</span>
+      </label>
       <span className={classes.startInputLogo}>
         {startInputLogo && (
           <img src={startInputLogo} alt="Icon in the start of input field" />
@@ -38,6 +48,7 @@ const Input = ({
         onBlur={onBlur}
         onFocus={onFocus}
         autoComplete="true"
+        ref={inputRef}
         {...args}
       />
       <span className={classes.endInputLogo}>

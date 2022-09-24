@@ -16,6 +16,7 @@ import classes from './AuthForm.module.scss';
 
 const AuthForm = ({
   onFormSubmitHandler,
+  onForgotPasswordClickHandler,
   onPasswordChangeHandler,
   onPasswordBlurHandler,
   onEmailChangeHandler,
@@ -29,6 +30,7 @@ const AuthForm = ({
   isSignInFormShow,
   isFormValid,
   onClickRegistrationButton,
+  signInWithGoogle,
 }) => {
   const title = isSignInFormShow ? 'Sign In' : 'Sign Up';
   const buttonText = isSignInFormShow ? 'Login' : 'Register';
@@ -113,7 +115,13 @@ const AuthForm = ({
             label="Remember me"
             className="forgotPassword__checkbox"
           />
-          <Button className="secondaryButton">Forgot password?</Button>
+          <Button
+            className="secondaryButton"
+            onClick={onForgotPasswordClickHandler}
+            type="button"
+          >
+            Forgot password?
+          </Button>
         </div>
         <div className={classes.form__button}>
           <Button className="button" type="submit" disabled={!isFormValid}>
@@ -121,15 +129,9 @@ const AuthForm = ({
           </Button>
         </div>
         <div className={classes.form__logo}>
-          <a href="/">
-            <img src={facebookIcon} alt="Facebook icon" />
-          </a>
-          <a href="/">
-            <img src={appleIcon} alt="Apple icon" />
-          </a>
-          <a href="/">
-            <img src={googleIcon} alt="Google icon" />
-          </a>
+          <img src={facebookIcon} alt="Facebook icon" />
+          <img src={appleIcon} alt="Apple icon" />
+          <img src={googleIcon} alt="Google icon" onClick={signInWithGoogle} />
         </div>
       </div>
     </form>
