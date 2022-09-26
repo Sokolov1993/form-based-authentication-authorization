@@ -2,7 +2,7 @@
 import firebase from 'firebase/compat/app';
 import { auth as firebaseAuth } from 'firebase/compat/auth';
 // import 'firebase';
-import { REACT_APP_API_KEY } from '../../constants/requestHelpers';
+import { REACT_APP_API_KEY } from '../constants/requestHelpers';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 

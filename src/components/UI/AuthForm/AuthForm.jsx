@@ -4,8 +4,6 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 import backgroundImage from '../../../assets/images/authForm/background.jpg';
-import facebookIcon from '../../../assets/images/authForm/facebook_logo.svg';
-import appleIcon from '../../../assets/images/authForm/apple_logo.svg';
 import googleIcon from '../../../assets/images/authForm/google_logo.svg';
 import messageIcon from '../../../assets/images/authForm/message_logo.svg';
 import padlockIcon from '../../../assets/images/authForm/padlock_logo.svg';
@@ -31,11 +29,22 @@ const AuthForm = ({
   isFormValid,
   onClickRegistrationButton,
   signInWithGoogle,
+  error,
 }) => {
   const title = isSignInFormShow ? 'Sign In' : 'Sign Up';
   const buttonText = isSignInFormShow ? 'Login' : 'Register';
   const passwordInputType = isPasswordShown ? 'text' : 'password';
   const passwordViewIcon = isPasswordShown ? hideIcon : viewIcon;
+
+  const errorMessage = () => {
+    if (error && isSignInFormShow) {
+      return (
+        <strong className={classes.error}>
+          <span>ERROR:</span> {error.message}
+        </strong>
+      );
+    }
+  };
 
   const callToAction = () => {
     if (isSignInFormShow) {
@@ -77,6 +86,7 @@ const AuthForm = ({
       <div className={classes.form__inputs}>
         <h2>{title}</h2>
         <div className={classes.inputs__registerHere}>{callToAction()}</div>
+        {errorMessage()}
         <div className={classes.inputs__groupOfFields}>
           <Input
             htmlFor="email"
@@ -129,8 +139,6 @@ const AuthForm = ({
           </Button>
         </div>
         <div className={classes.form__logo}>
-          <img src={facebookIcon} alt="Facebook icon" />
-          <img src={appleIcon} alt="Apple icon" />
           <img src={googleIcon} alt="Google icon" onClick={signInWithGoogle} />
         </div>
       </div>

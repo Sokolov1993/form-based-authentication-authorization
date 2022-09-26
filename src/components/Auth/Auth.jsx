@@ -13,12 +13,12 @@ import { authRequest } from '../../store/authSlice/authRequest';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { signInWithGoogle } from '../services/firebase';
+import { signInWithGoogle } from '../../services/firebase';
 import firebase from 'firebase/compat/app';
 
 const Auth = () => {
   const dispatch = useDispatch();
-  const { token, pending } = useSelector((state) => state.authSlice);
+  const { token, pending, error } = useSelector((state) => state.authSlice);
   const navigate = useNavigate();
   const resetPasswordEmail = useRef();
 
@@ -179,6 +179,7 @@ const Auth = () => {
         isFormValid={isFormValid}
         onClickRegistrationButton={onClickRegistrationButton}
         signInWithGoogle={signInWithGoogle}
+        error={error}
       />
     </Fragment>
   );

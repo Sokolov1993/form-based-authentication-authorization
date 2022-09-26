@@ -43,6 +43,7 @@
 }
 
 .form__inputs {
+  position: relative;
   display: flex;
   flex-direction: column;
   min-height: 430px;
@@ -97,5 +98,22 @@
     cursor: pointer;
     width: 42px;
     height: 42px;
+    transition: filter ease-in-out 0.5s;
+
+    &:hover {
+      filter: invert(100%);
+    }
+  }
+}
+
+.error {
+  position: absolute;
+  top: 18%;
+  display: block;
+  margin-top: 5px;
+  color: grey;
+
+  span {
+    color: red;
   }
 }

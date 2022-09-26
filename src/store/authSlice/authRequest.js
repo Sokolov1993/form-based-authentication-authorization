@@ -4,7 +4,7 @@ import { headers } from '../../constants/requestHelpers';
 
 export const authRequest = createAsyncThunk('auth/signUp', async (payload) => {
   const url = payload.url;
-
+  console.log(payload);
   try {
     const data = JSON.stringify({
       email: payload.email,
@@ -20,6 +20,8 @@ export const authRequest = createAsyncThunk('auth/signUp', async (payload) => {
 
     return token;
   } catch (err) {
-    throw new Error(err);
+    const errorMessage = err.response.data.error.message.split('_').join(' ');
+
+    throw new Error(errorMessage);
   }
 });
