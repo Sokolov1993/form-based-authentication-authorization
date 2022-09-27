@@ -1,18 +1,22 @@
 import React from 'react';
 
+import Quiz from '../../components/Quiz/Quiz';
+
 import { logOut } from '../../store/authSlice/authSlice';
 import { auth } from '../../services/firebase';
 
 import { useDispatch } from 'react-redux';
 
+import classes from './Home.module.scss';
+
 const Home = () => {
   const dispatch = useDispatch();
 
   return (
-    <div style={{ backgroundColor: 'grey', textAlign: 'center' }}>
-      <h1 style={{ color: 'black', textAlign: 'center' }}>HOME PAGE</h1>
+    <div className={classes.home} style={{ textAlign: 'center' }}>
+      <h1 style={{ color: 'white', textAlign: 'center' }}>HOME PAGE</h1>
       <button
-        style={{ backgroundColor: 'black', cursor: 'pointer' }}
+        style={{ backgroundColor: 'white', cursor: 'pointer', color: 'black' }}
         onClick={() => {
           auth.signOut();
           dispatch(logOut());
@@ -20,6 +24,7 @@ const Home = () => {
       >
         LOG OUT
       </button>
+      <Quiz />
     </div>
   );
 };

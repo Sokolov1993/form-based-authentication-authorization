@@ -1,0 +1,23 @@
+.quiz {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem;
+
+  background: linear-gradient(
+    to right top,
+    #050214ec,
+    #24193cec,
+    #4e2363ec,
+    #832482ec,
+    #c10c99ec
+  );
+
+  legend {
+    background-color: black;
+  }
+
+  gap: 10px;
+}

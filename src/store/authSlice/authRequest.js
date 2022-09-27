@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from './instance';
+import { googleApiInstance } from '../../api/instances';
 import { headers } from '../../constants/requestHelpers';
 
 export const authRequest = createAsyncThunk('auth/signUp', async (payload) => {
@@ -12,7 +12,7 @@ export const authRequest = createAsyncThunk('auth/signUp', async (payload) => {
       returnSecureToken: true,
     });
 
-    const response = await instance.post(`${url}`, data, {
+    const response = await googleApiInstance.post(`${url}`, data, {
       headers: headers,
     });
 

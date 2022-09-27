@@ -6,7 +6,7 @@ import Spinner from '../UI/Spinner/Spinner';
 
 import { emailValidationRegExp } from '../../constants/emailRegExpValidation';
 import { authActions } from '../../constants/requestHelpers';
-import { instance } from '../../store/authSlice/instance';
+import { googleApiInstance } from '../../api/instances';
 import { signInWithGoogleAcc } from '../../store/authSlice/authSlice';
 
 import { authRequest } from '../../store/authSlice/authRequest';
@@ -109,7 +109,7 @@ const Auth = () => {
   const onResetPasswordClickHandler = () => {
     const url = authActions.passwordReset;
 
-    instance.post(url, {
+    googleApiInstance.post(url, {
       requestType: 'PASSWORD_RESET',
       email: resetPasswordEmail.current.value,
       url: authActions.passwordReset,

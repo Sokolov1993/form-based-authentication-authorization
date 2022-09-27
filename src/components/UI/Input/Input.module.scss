@@ -64,3 +64,9 @@
 .input.--validInput {
   border-color: $primary-color;
 }
+
+.quizRadioInput {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
