@@ -8,4 +8,8 @@
   gap: 20px;
   padding: 6rem 1rem;
   background: $main-background;
+
+  @media (max-width: 480px) {
+    padding: 8rem 1rem;
+  }
 }

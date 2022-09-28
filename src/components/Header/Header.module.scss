@@ -8,6 +8,10 @@
   backdrop-filter: blur(5px);
   background-color: rgba(0, 0, 0, 0.404);
   padding: 0 1rem;
+
+  @media (max-width: 480px) {
+    height: 100px;
+  }
 }
 
 .wrapper {
@@ -19,6 +23,15 @@
   button {
     border-radius: 0px;
     max-width: 10rem;
+
+    @media (max-width: 480px) {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
