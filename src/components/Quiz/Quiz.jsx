@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { quizRequest } from '../../store/quizSlice/quizRequest';
 
-import QuizCard from '../UI/QuizCard/QuizCard';
+import QuizCard from './QuizCard/QuizCard';
 
 import classes from './Quiz.module.scss';
 

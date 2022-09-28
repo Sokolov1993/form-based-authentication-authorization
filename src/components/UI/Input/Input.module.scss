@@ -1,5 +1,6 @@
 @import '../../../styles/mixins.scss';
 @import '../../../styles/variables.scss';
+@import '../../../styles/placeholders.scss';
 
 .groupOfFields__input {
   display: flex;
@@ -69,4 +70,12 @@
   display: inline-flex;
   flex-direction: row-reverse;
   gap: 10px;
+
+  input:after {
+    @extend %radio-after;
+  }
+
+  input:checked:after {
+    @extend %radio-checked-after;
+  }
 }

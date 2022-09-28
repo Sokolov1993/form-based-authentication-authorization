@@ -6,3 +6,12 @@ $secondary-color: #8d0a71;
 // background-from-color
 
 $background-form-color: #050214;
+
+$main-background: linear-gradient(
+  to right top,
+  #050214ec,
+  #24193cec,
+  #4e2363ec,
+  #832482ec,
+  #c10c99ec
+);

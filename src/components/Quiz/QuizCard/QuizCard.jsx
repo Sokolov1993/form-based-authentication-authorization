@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../../UI/Input/Input';
+import Button from '../../UI/Button/Button';
 
 import classes from './QuizCard.module.scss';
 
@@ -15,8 +15,8 @@ const QuizCard = ({ answers, id, correct }) => {
     showRightAnswer && radioChecked ? 'Hide answer' : 'Check answer';
 
   const onInputChangeHandler = (event) => {
-    setRadioChecked(event.target.checked);
     const isAnswerTrue = correct.trim() === event.target.value.trim();
+    setRadioChecked(event.target.checked);
 
     setSelectedAnswer(isAnswerTrue);
   };
@@ -41,7 +41,6 @@ const QuizCard = ({ answers, id, correct }) => {
           />
         </div>
       ))}
-
       <div className={classes.button}>
         {showRightAnswer && radioChecked && answerCheck}
         <Button

@@ -1,3 +1,6 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
 .quiz {
   max-width: 1200px;
   width: 100%;
@@ -5,18 +8,11 @@
   flex-direction: column;
   align-items: flex-start;
   padding: 1rem;
-
-  background: linear-gradient(
-    to right top,
-    #050214ec,
-    #24193cec,
-    #4e2363ec,
-    #832482ec,
-    #c10c99ec
-  );
+  background: $main-background;
 
   legend {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.473);
+    padding: 0.5rem;
   }
 
   gap: 10px;

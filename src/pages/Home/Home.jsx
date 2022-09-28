@@ -1,30 +1,18 @@
 import React from 'react';
 
 import Quiz from '../../components/Quiz/Quiz';
-
-import { logOut } from '../../store/authSlice/authSlice';
-import { auth } from '../../services/firebase';
-
-import { useDispatch } from 'react-redux';
+import Header from '../../components/Header/Header';
 
 import classes from './Home.module.scss';
 
 const Home = () => {
-  const dispatch = useDispatch();
-
+  // TODO: Create header. After - push TITLE and logout button into this element;
   return (
     <div className={classes.home} style={{ textAlign: 'center' }}>
-      <h1 style={{ color: 'white', textAlign: 'center' }}>HOME PAGE</h1>
-      <button
-        style={{ backgroundColor: 'white', cursor: 'pointer', color: 'black' }}
-        onClick={() => {
-          auth.signOut();
-          dispatch(logOut());
-        }}
-      >
-        LOG OUT
-      </button>
-      <Quiz />
+      <Header />
+      <main className={classes.home__main}>
+        <Quiz />
+      </main>
     </div>
   );
 };
