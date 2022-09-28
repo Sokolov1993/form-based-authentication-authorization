@@ -9,7 +9,7 @@ import classes from './Quiz.module.scss';
 
 const Quiz = () => {
   const dispatch = useDispatch();
-  const { quizData, pending, error } = useSelector((state) => state.quizSlice);
+  const { quizData } = useSelector((state) => state.quizSlice);
 
   const fetchQuestions = () => {
     dispatch(quizRequest());

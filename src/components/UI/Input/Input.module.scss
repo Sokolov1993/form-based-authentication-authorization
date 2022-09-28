@@ -69,7 +69,9 @@
 .quizRadioInput {
   display: inline-flex;
   flex-direction: row-reverse;
+  align-items: center;
   gap: 10px;
+  position: relative;
 
   input:after {
     @extend %radio-after;

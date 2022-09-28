@@ -3,7 +3,7 @@ import React, { Fragment } from 'react';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 
-import backgroundImage from '../../../assets/images/authForm/background.jpg';
+import backgroundImage from '../../../assets/images/authForm/background.webp';
 import googleIcon from '../../../assets/images/authForm/google_logo.svg';
 import messageIcon from '../../../assets/images/authForm/message_logo.svg';
 import padlockIcon from '../../../assets/images/authForm/padlock_logo.svg';
@@ -81,7 +81,7 @@ const AuthForm = ({
   return (
     <form className={classes.form} onSubmit={onFormSubmitHandler}>
       <div className={classes.form__image}>
-        <img src={backgroundImage} alt="Airplane in airport" />
+        <img src={backgroundImage} alt="JavaScript code" />
       </div>
       <div className={classes.form__inputs}>
         <h2>{title}</h2>

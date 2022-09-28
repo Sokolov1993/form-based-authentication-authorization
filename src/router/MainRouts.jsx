@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateTokenStatus } from '../store/authSlice/authSlice';
 
 import Welcome from '../pages/Welcome/Welcome';
-import Home from '../pages/Home/Home';
+import Spinner from '../components/UI/Spinner/Spinner';
+
+const Home = lazy(() => import('../pages/Home/Home'));
 
 const MainRouts = () => {
   const navigate = useNavigate();
@@ -22,10 +24,12 @@ const MainRouts = () => {
   }, [token, navigate, dispatch]);
 
   return (
-    <Routes>
-      <Route index element={<Welcome />} />
-      {token && <Route path="/home" element={<Home />} />}
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route index element={<Welcome />} />
+        {token && <Route path="/home" element={<Home />} />}
+      </Routes>
+    </Suspense>
   );
 };
 

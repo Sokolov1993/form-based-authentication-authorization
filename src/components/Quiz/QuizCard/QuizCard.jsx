@@ -28,18 +28,18 @@ const QuizCard = ({ answers, id, correct }) => {
   return (
     <Fragment>
       {answers.map((answer, index) => (
-        <div key={`${index}`}>
+        <Fragment key={`${index}`}>
           <Input
             type="radio"
             className="quizRadioInput"
             label={answer}
-            htmlFor={`${index}`}
-            id={`${index}`}
+            htmlFor={`${index}${id}`}
+            id={`${index}${id}`}
             name={id}
             value={answer}
             onChange={onInputChangeHandler}
           />
-        </div>
+        </Fragment>
       ))}
       <div className={classes.button}>
         {showRightAnswer && radioChecked && answerCheck}

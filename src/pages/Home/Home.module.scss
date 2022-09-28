@@ -1,17 +1,11 @@
 @import '../../styles/variables.scss';
 
-.home {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: $main-background;
-}
-
-.home__main {
-  max-width: 1200px;
+.main {
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
-  padding-top: 6rem;
+  padding: 6rem 1rem;
+  background: $main-background;
 }

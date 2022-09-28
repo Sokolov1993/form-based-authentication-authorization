@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import Quiz from '../../components/Quiz/Quiz';
 import Header from '../../components/Header/Header';
@@ -6,14 +6,13 @@ import Header from '../../components/Header/Header';
 import classes from './Home.module.scss';
 
 const Home = () => {
-  // TODO: Create header. After - push TITLE and logout button into this element;
   return (
-    <div className={classes.home} style={{ textAlign: 'center' }}>
+    <Fragment>
       <Header />
-      <main className={classes.home__main}>
+      <main className={classes.main}>
         <Quiz />
       </main>
-    </div>
+    </Fragment>
   );
 };
 

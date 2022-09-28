@@ -4,7 +4,7 @@ import { headers } from '../../constants/requestHelpers';
 
 export const authRequest = createAsyncThunk('auth/signUp', async (payload) => {
   const url = payload.url;
-  console.log(payload);
+
   try {
     const data = JSON.stringify({
       email: payload.email,
